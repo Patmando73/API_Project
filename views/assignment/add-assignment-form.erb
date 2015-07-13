@@ -1,10 +1,16 @@
 <p>Lets add an assignment!</p>
 
-<form action="/save-user">
+<form action="/save-assignment">
   <input type="text" placeholder="Enter name!" name="name">
   <input type="text" placeholder="Enter description!" name="description">
   <input type="text" placeholder="Enter repo!" name="repo">
-  <input type="text" placeholder="Enter link!" name="link">
+  <input type="text" placeholder="Enter link!" name="link"><br>
+
+
+  <p>Check all collaborators for this project.</p>
+  <%@collabs.each do |d|  %>
+  <input type="checkbox" name="collaborator<%= d.id %>" value="<%= d.id %>"><%= d.username %>
+  <% end  %>
   <input type="submit">
 </form>
 

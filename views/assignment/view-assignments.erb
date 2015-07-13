@@ -1,0 +1,20 @@
+<h1>This is a list of all my assignments.</h1>
+
+
+<ol>
+  <% @all.each do |d|%>
+      <li>
+        <strong>Name:</strong> <%="#{d.name}" %><br>
+        <strong>Description:</strong> <%="#{d.description}"%><br>
+        <strong>Repo:</strong> <%="#{d.repo}"%><br>
+        <strong>Link:</strong> <a href= "<%="#{d.link}"%>"><%="#{d.link}"%></a><br>
+      </li>
+  <% end %>
+</ol>
+
+
+
+
+
+
+<a href="/home">GO HOME!</a>

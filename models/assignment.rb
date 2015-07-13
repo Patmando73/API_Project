@@ -5,7 +5,7 @@ class Assignment
   extend DatabaseClassMethods
   include DatabaseInstanceMethods
 
-  attr_accessor :id, :description, :repo, :link
+  attr_accessor :id, :name, :description, :repo, :link
 
 
   def initialize(options = {})
