@@ -61,6 +61,34 @@ get "/api/specific-collabs/:id" do
 end
 
 
+get "/api/assignments/new/:name" do
+  @assignment = Assignment.add({"name" => params["name"], "repo" => params["repo"], "description" => params["description"], "link" => params["link"]})
+
+
+
+
+  # array = []
+  #
+  # params["collaborator_id"].split(',').each do |d|
+  #
+  #   array << d.to_i
+  #
+  # end
+  #
+  # array.each do |b|
+  #
+  #   @assignment_collabs = Collaboration.find(b)
+  #
+  # end
+
+  json_array = []
+  json_format = @assignment.json_format
+  # json_format["collaborators"] = @assignment_collabs
+  json_array << json_format
+  json json_array
+end
+
+
 
 
 
