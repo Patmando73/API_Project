@@ -16,6 +16,31 @@ class Assignment
     @link = options["link"]
   end
 
+  def collabs
+    results = CONNECTION.execute("SELECT c.username FROM collaborators c JOIN collaborations cl ON c.id = cl.collaborator_id WHERE cl.assignment_id = #{@id};")
+
+    collaborators = []
+
+    results.each do |d|
+      collaborators << d["username"]
+    end
+
+    return collaborators.join(", ")
+
+  end
+
+  def json_format
+    hash = {}
+    hash["id"] = self.id
+    hash["name"] = self.name
+    hash["description"] = self.description
+    hash["repo"] = self.repo
+    hash["link"] = self.link
+
+    return hash
+
+  end
+
 
 
 end

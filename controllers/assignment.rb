@@ -7,8 +7,6 @@ end
 get "/view-assignments" do
   @all = Assignment.all
 
-  @all_collabs = Collaboration.all
-
   erb :"assignment/view-assignments"
 end
 

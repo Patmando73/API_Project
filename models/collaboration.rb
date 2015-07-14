@@ -16,8 +16,17 @@ class Collaboration
   end
 
 
-  def self.collabs
+  def collabs
     results = CONNECTION.execute("SELECT c.username FROM collaborators c JOIN collaborations cl ON c.id = cl.collaborator_id WHERE cl.assignment_id = 1;")
+
+    collaborators = []
+
+    results.each do |d|
+      collaborators << d["username"]
+    end
+
+    return collaborators
+
   end
 end
 
