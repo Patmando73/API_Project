@@ -14,4 +14,19 @@ class Collaborator
     @id =  options["id"]
     @username = options["username"]
   end
+
+
+
+  def specific_collab
+    results = CONNECTION.execute("SELECT * FROM assignments a JOIN collaborations cl on cl.assignment_id = a.id WHERE cl.collaborator_id = #{@id};;")
+
+    assignments = []
+    results.each do |d|
+      assignments << d
+
+    end
+
+
+    return assignments
+  end
 end

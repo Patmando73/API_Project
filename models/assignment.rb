@@ -29,6 +29,27 @@ class Assignment
 
   end
 
+
+  def self.people_worked_with
+    results = CONNECTION.execute("SELECT c.username FROM collaborators c JOIN collaborations cl ON c.id = cl.assignment_id WHERE c.username NOT LIKE 'patrick' GROUP BY c.username;")
+
+    people = []
+
+    results.each do |d|
+      people << d["username"]
+    end
+
+    return people.join(", ")
+
+  end
+
+
+
+
+
+
+
+
   def json_format
     hash = {}
     hash["id"] = self.id
