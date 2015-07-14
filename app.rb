@@ -3,6 +3,7 @@ require "sinatra"
 require "sinatra/reloader"
 require "sinatra/json"
 
+set :bind, '0.0.0.0'
 
 
 # SQL/Database
