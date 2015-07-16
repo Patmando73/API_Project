@@ -2,7 +2,7 @@
  * Created by Patmando73 on 7/15/15.
  */
 
-if (document.body.attributes.data_page_name.value === "modify_assignment") {
+
     document.getElementById("modify_form").classList.add("hidden");
 
     function seeAllAssignments() {
@@ -70,4 +70,4 @@ if (document.body.attributes.data_page_name.value === "modify_assignment") {
     }
 
 
-}
+

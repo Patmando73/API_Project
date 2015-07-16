@@ -21,9 +21,9 @@
       </li>
       <li>
         Who worked on this assignment?
-        <% @collaborators.each do |collaborator| %>
+        <% @collaborators.each do |d| %>
           <li>
-            <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= collaborator.id %>" name="assignment[collaborator_id][]" value="<%= collaborator.id %>"> <%= collaborator.username %>
+            <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= d.id %>" name="assignment[collaborator_id][]" value="<%= d.id %>"> <%= d.username %>
           </li>
       <% end %>
       </li>
