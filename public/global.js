@@ -22,7 +22,7 @@ function showAllAssignments (event) {
             var div = document.getElementById("assignments");
             div.appendChild(newDiv);
             document.getElementById(newDivId).onclick = showThisAssignment;
-            
+
         }
     });
 

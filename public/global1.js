@@ -54,11 +54,12 @@
             //    checkboxName = "collaborator" + this.response.collaborators[x]
             //    document.getElementById(checkboxName).checked = true;
             //}
-        })
+        });
         req.responseType = "json";
         req.send();
     }
     document.getElementById("submitter").addEventListener("click", modifyAssignment);
+    document.getElementById("submitter").addEventListener("click", updateAssignmentName);
 
     function modifyAssignment(event) {
         event.preventDefault();
@@ -67,6 +68,23 @@
         var request = new XMLHttpRequest();
         request.open("POST", "/api/modify_assignment_confirm");
         request.send(new FormData(formElement));
+    }
+
+
+
+    function updateAssignmentName() {
+        var req = new XMLHttpRequest();
+        thisId = document.getElementById("assignment_id_field").value;
+        var route = "/api/assignments/" + thisId;
+        req.open("get", route);
+
+        req.addEventListener("load", function(){
+            newName = document.getElementById("name_field").value;
+            document.getElementById("assignment" + thisId).innerText = "";
+            document.getElementById("assignment" + thisId).innerText = newName;
+        });
+        req.responseType = "json";
+        req.send();
     }
 
 

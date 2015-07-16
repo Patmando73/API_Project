@@ -31,15 +31,15 @@ get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
     assignment.remove_collaborator(params["collaborator_id"].to_i)
     json assignment.json_format
   else
-    return "#{Collaborator.find(params['collaborator_id']).collaborator_name} has not been added as a collaborator on #{assignment.assignment_name}."
+    return "#{Collaborator.find(params['collaborator_id']).username} has not been added as a collaborator on #{assignment.name}."
   end
 end
 
 post "/api/modify_assignment_confirm" do
-  modified_assignment = Assignment.new({"id" => params["assignment"]["id"], "assignment_name" => params["assignment"]["name"], "link" => params["assignment"]["link"], "repository" => params["assignment"]["repository"], "description" => params["assignment"]["description"]})
+  modified_assignment = Assignment.new({"id" => params["assignment"]["id"], "name" => params["assignment"]["name"], "link" => params["assignment"]["link"], "repo" => params["assignment"]["repository"], "description" => params["assignment"]["description"]})
   modified_assignment.save
-  modified_assignment.delete_collaborations
-  modified_assignment.add_to_collaborations(params["assignment"]["collaborator_id"])
+  # modified_assignment.delete_collaborations
+  # modified_assignment.add_to_collaborations(params["assignment"]["collaborator_id"])
   json modified_assignment.json_format
 end
 
