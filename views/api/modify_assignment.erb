@@ -5,28 +5,18 @@
 
 <div id="modify_form">
   <form id="form" action="/api/modify_assignment_confirm">
-    <input type="hidden" id="assignment_id_field" name="assignment[id]">
+    <input type="hidden" id="assignment_id_field" name="id">
     <ul>
-      <li>
-        Assignment Name - <input id="name_field" type="text" name="assignment[name]">
-      </li>
-      <li>
-        Description - <input id="description_field" type="text" name="assignment[description]">
-      </li>
-      <li>
-        Repository Link - <input id="repository_field" type="text" name="assignment[repository]">
-      </li>
-      <li>
-        Video or Article link <input id="link_field" type="text" name="assignment[link]">
-      </li>
-      <li>
+      <li>Assignment Name - <input id="name_field" type="text" name="name"></li>
+      <li>Description - <input id="description_field" type="text" name="description"></li>
+      <li>Repository Link - <input id="repo_field" type="text" name="repo"></li>
+      <li>Video or Article link <input id="link_field" type="text" name="link"></li><br>
         Who worked on this assignment?
         <% @collaborators.each do |d| %>
           <li>
-            <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= d.id %>" name="assignment[collaborator_id][]" value="<%= d.id %>"> <%= d.username %>
+            <input type="checkbox" class="collaborator_checkbox" id="collaborator<%= d.id %>" name="collaborator_id[]" value="<%= d.id %>"> <%= d.username %>
           </li>
       <% end %>
-      </li>
     </ul>
     <input type="button" id="submitter" value="Save these Changes">
   </form>

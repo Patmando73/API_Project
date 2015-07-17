@@ -23,8 +23,6 @@
                 currentDiv.appendChild(newDiv);
                 document.getElementById(newDivId).onclick = showAssignmentForm;
 
-
-                // document.body.insertBefore(newDiv, currentDiv.lastChild);
             }
         });
         req.responseType = "json";
@@ -41,7 +39,7 @@
             document.getElementById("modify_form").classList.remove("hidden");
             document.getElementById("name_field").value = this.response[0].name;
             document.getElementById("description_field").value = this.response[0].description;
-            document.getElementById("repository_field").value = this.response[0].repo;
+            document.getElementById("repo_field").value = this.response[0].repo;
             document.getElementById("link_field").value = this.response[0].link;
             document.getElementById("assignment_id_field").value = this.response[0].id;
 
@@ -50,10 +48,12 @@
                 checkboxes[x].checked = false;
             }
 
-            //for (var x = 0; x < this.response.collaborators.length; x++) {
-            //    checkboxName = "collaborator" + this.response.collaborators[x]
-            //    document.getElementById(checkboxName).checked = true;
-            //}
+            for (var x = 0; x < this.response[0].collaborators.split(',').length; x++) {
+                checkboxName = "collaborator" + this.response[0].collaborators.split(',')[x];
+                if (isInArray(this.response[0].collaborators.split(',')[x], this.response[0].collaborators.split(',')) == true) {
+                    document.getElementById("collaborator" + (x + 1)).checked = true;
+                }
+            }
         });
         req.responseType = "json";
         req.send();
@@ -63,7 +63,6 @@
 
     function modifyAssignment(event) {
         event.preventDefault();
-        // event.stopPropagation();
         var formElement = document.getElementById("form");
         var request = new XMLHttpRequest();
         request.open("POST", "/api/modify_assignment_confirm");
@@ -86,6 +85,10 @@
         req.responseType = "json";
         req.send();
     }
+
+function isInArray(value, array) {
+    return array.indexOf(value) > -1;
+}
 
 
 

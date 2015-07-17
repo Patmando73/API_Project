@@ -36,14 +36,14 @@ get "/api/assignments/remove_collaborator/:assignment_id/:collaborator_id" do
 end
 
 post "/api/modify_assignment_confirm" do
-  modified_assignment = Assignment.new({"id" => params["assignment"]["id"], "name" => params["assignment"]["name"], "link" => params["assignment"]["link"], "repo" => params["assignment"]["repository"], "description" => params["assignment"]["description"]})
+  modified_assignment = Assignment.new({"id" => params["id"], "name" => params["name"], "link" => params["link"], "repo" => params["repo"], "description" => params["description"]})
   modified_assignment.save
   # modified_assignment.delete_collaborations
   # modified_assignment.add_to_collaborations(params["assignment"]["collaborator_id"])
   json modified_assignment.json_format
 end
 
-get "/api/views/modify_assignment" do
+get "/api/modify_assignment" do
   @collaborators = Collaborator.all
   erb :"/api/modify_assignment"
 end
@@ -82,6 +82,28 @@ get "/api/specific-collabs/:id" do
 
   json json_array
 
+end
+
+
+get "/api/add_user_form" do
+  erb :"/api/add-user-form"
+end
+
+
+get "/api/view_users" do
+  users = User.all
+  json_array = []
+  users.each do |d|
+    json_array << d.json_format
+  end
+  json json_array
+end
+
+
+post "/api/add_user" do
+  password = BCrypt::Password.create(params["password"])
+  new_user = User.add({"email" => params["email"], "password" => password})
+  json new_user.json_format
 end
 
 
